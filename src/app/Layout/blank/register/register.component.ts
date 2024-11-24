@@ -10,16 +10,20 @@ import { Router } from '@angular/router';
   styleUrl: './register.component.css'
 })
 export class RegisterComponent implements OnInit {
-    registerForm: FormGroup; submitted = false;
-  constructor(private formBuilder: FormBuilder,
-    private router: Router) { } ngOnInit(): void {
-    this.registerForm = this.formBuilder.group({
-      name:
-        ['', Validators.required], email: ['', [Validators.required, Validators.email]],
-      utNumber: ['', Validators.required], password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', Validators.required]
-    });
-  } onSubmit(): void {
-    this.submitted = true; if (this.registerForm.invalid) { return; } // Perform registration logic here, for now, we'll just navigate to login this.router.navigate(['/login']);
-  }
-}
+    registerForm: FormGroup; 
+    submitted = false;
+
+
+  constructor(
+    private formBuilder: FormBuilder, 
+    private router: Router) { this.registerForm = this.formBuilder.group({
+       name: ['', Validators.required], 
+       email: ['', [Validators.required, Validators.email]], 
+       utNumber: ['', Validators.required], 
+       password: ['', [Validators.required, Validators.minLength(6)]], 
+       confirmPassword: ['', Validators.required] }); } 
+       ngOnInit(): void {} 
+       onSubmit(): void { this.submitted = true; if (this.registerForm.invalid) 
+        { return; } 
+        // Perform registration logic here, for now, we'll just navigate to login 
+        this.router.navigate(['/login']); } get f() { return this.registerForm.controls; } }

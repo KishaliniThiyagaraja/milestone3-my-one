@@ -9,20 +9,26 @@ import { ValidationService } from '../../../Service/config/config.service';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
-  host: {'[@routerTransition]': ''}
+  host: { '[@routerTransition]': '' }
 })
 export class LoginComponent implements OnInit {
 navigateToRegister() {
 throw new Error('Method not implemented.');
-} 
-  loginForm!: FormGroup; 
-  submitted = false; constructor(private formBuilder: FormBuilder, 
-    private router: Router) 
-    { } ngOnInit(): void 
-    { this.loginForm = this.formBuilder.group({ identifier: ['', 
-    Validators.required], password: ['', 
-    [Validators.required, Validators.minLength(6)]] });
-   } onSubmit(): void { this.submitted = true; if (this.loginForm.invalid) 
-    { return; } // Perform login logic here, for now, we'll just navigate to home this.router.navigate(['/']); } 
+}
+  loginForm: FormGroup;
+  submitted = false;
+  constructor(private formBuilder: FormBuilder,
+    private router: Router) {
+    this.loginForm = this.formBuilder.group({
+      identifier: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(6)]]
+    });
   }
+  ngOnInit(): void { }
+  onSubmit(): void {
+    this.submitted = true;
+    if (this.loginForm.invalid) { return; }
+    // Perform login logic here, for now, we'll just navigate to home
+    this.router.navigate(['/']);
+  } get f() { return this.loginForm.controls; }
 }
