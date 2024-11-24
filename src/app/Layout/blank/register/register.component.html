@@ -1,0 +1,51 @@
+<div class="container shadow-lg mt-5 rounded">
+  <div class="row">
+    <div class="col-6">
+      <form class="m-5" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <h1>Create Account</h1>
+
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon1"><i class="bi bi-person"></i></span>
+          <input formControlName="name" type="text" class="form-control" placeholder="Your Name" aria-label="Name" aria-describedby="basic-addon2">
+        </div>
+        <div *ngIf="submitted && registerForm.controls.name.errors" class="form-text text-danger">
+          Name is required
+        </div>
+
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon1"><i class="bi bi-envelope-plus"></i></span>
+          <input formControlName="email" type="text" class="form-control" placeholder="Your Email" aria-label="Email" aria-describedby="basic-addon2">
+        </div>
+        <div *ngIf="submitted && registerForm.controls.email.errors" class="form-text text-danger">
+          Valid Email is required
+        </div>
+
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon1"><i class="bi bi-card-list"></i></span>
+          <input formControlName="utNumber" type="text" class="form-control" placeholder="Your UT Number" aria-label="UT Number" aria-describedby="basic-addon2">
+        </div>
+        <div *ngIf="submitted && registerForm.controls.utNumber.errors" class="form-text text-danger">
+          UT Number is required
+        </div>
+
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon1"><i class="bi bi-file-lock"></i></span>
+          <input formControlName="password" type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
+        </div>
+        <div *ngIf="submitted && registerForm.controls.password.errors" class="form-text text-danger">
+          Password must be at least 6 characters long
+        </div>
+
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon1"><i class="bi bi-file-lock"></i></span>
+          <input formControlName="confirmPassword" type="password" class="form-control" placeholder="Confirm Password" aria-label="Confirm Password" aria-describedby="basic-addon1">
+        </div>
+        <div *ngIf="submitted && registerForm.controls.confirmPassword.errors" class="form-text text-danger">
+          Confirm Password is required
+        </div>
+
+        <button type="submit" class="btn btn-primary">Create Account</button>
+      </form>
+    </div>
+    <div class="col-6">
+      <img src="register-image.jpg">

@@ -1,0 +1,48 @@
+<div class="container mt-4">
+    <h2>Exam Marks Management</h2>
+  
+    <form (ngSubmit)="saveMarks()" #marksForm="ngForm" class="mb-4">
+      <div class="row mb-3">
+        <div class="col">
+          <input type="text" placeholder="Student Number" [(ngModel)]="studentNumber" name="studentNumber" class="form-control" required>
+        </div>
+        <div class="col">
+          <input type="text" placeholder="Student Name" [(ngModel)]="studentName" name="studentName" class="form-control" required>
+        </div>
+        <div class="col">
+          <input type="text" placeholder="Subject" [(ngModel)]="subject" name="subject" class="form-control" required>
+        </div>
+        <div class="col">
+          <input type="number" placeholder="Marks" [(ngModel)]="marksInput" name="marks" class="form-control" required>
+        </div>
+        <div class="col">
+          <button type="submit" class="btn btn-success">{{ isEditMode ? 'Update Marks' : 'Add Marks' }}</button>
+          <button type="button" class="btn btn-secondary" (click)="resetForm()">Cancel</button>
+        </div>
+      </div>
+    </form>
+  
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Student Number</th>
+          <th>Student Name</th>
+          <th>Subject</th>
+          <th>Marks</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let mark of marks; let i = index">
+          <td>{{ mark.studentNumber }}</td>
+          <td>{{ mark.studentName }}</td>
+          <td>{{ mark.subject }}</td>
+          <td>{{ mark.marks }}</td>
+          <td>
+            <button class="btn btn-warning" (click)="editMarks(i)">Edit</button>
+            <button class="btn btn-danger" (click)="deleteMarks(i)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

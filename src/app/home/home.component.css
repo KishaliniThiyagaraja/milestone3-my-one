@@ -1,0 +1,18 @@
+.welcome {
+    text-align: center;
+    color: rgb(151, 16, 16);
+  }
+  
+  button {
+    background-color: #565a56;
+    color: rgb(7, 7, 7);
+    padding: 30px 32px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 4px;
+  }
+  
+  button:hover {
+    background-color: black;
+  }
+  
