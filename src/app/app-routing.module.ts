@@ -15,12 +15,13 @@ const routes: Routes = [
   // { path: 'contact', component: ContactComponent }, 
   // { path: 'login', component: LoginComponent},
   // { path: 'register', component: RegisterComponent},
-  { path: '', component: HomeComponent }, 
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent }
+
 // { path: '', redirectTo: '/exam-marks', pathMatch: 'full' },
 //   { path: 'exam-marks', component: MarksComponent },
-
+// { path: '', component: HomeComponent }, 
+{ path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+   { path: '', redirectTo: 'login', pathMatch: 'full' },
 // { path: '', redirectTo: '/attendance', pathMatch: 'full' },
 //   { path: 'attendance', component: AttendanceComponent },
 

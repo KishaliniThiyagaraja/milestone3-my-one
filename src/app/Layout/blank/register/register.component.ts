@@ -9,21 +9,56 @@ import { Router } from '@angular/router';
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
-export class RegisterComponent implements OnInit {
-    registerForm: FormGroup; 
-    submitted = false;
+export class RegisterComponent  {
+  registerForm: FormGroup;
+  submitted = false;
+f: any;
+
+  constructor(private formBuilder: FormBuilder,
+    private router: Router , private userRegisterService :UserregisterService ) {
+    this.registerForm = this.formBuilder.group({
+      role: ['', Validators.required],
+      username: ['', Validators.required],
+      registerNumber: ['', Validators.required],
+      utNumber: [''],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      confirmPassword: ['', Validators.required]
+    },
+ { validator: this.mustMatch('password', 'confirmPassword') // Add custom validator
+  });
+    }
+  // Add conditional validation for UT Number based on the role
+
+  mustMatch(password: string, confirmPassword: string)
+   { return (formGroup: FormGroup) => { const passControl = formGroup.controls[password]; 
+    const confirmPassControl = formGroup.controls[confirmPassword]; 
+    if (confirmPassControl.errors && !confirmPassControl.errors['mustMatch']) { return; } 
+    if (passControl.value !== confirmPassControl.value) { confirmPassControl.setErrors({ mustMatch: true }); } else { confirmPassControl.setErrors(null); } }; 
+  }
 
 
-  constructor(
-    private formBuilder: FormBuilder, 
-    private router: Router) { this.registerForm = this.formBuilder.group({
-       name: ['', Validators.required], 
-       email: ['', [Validators.required, Validators.email]], 
-       utNumber: ['', Validators.required], 
-       password: ['', [Validators.required, Validators.minLength(6)]], 
-       confirmPassword: ['', Validators.required] }); } 
-       ngOnInit(): void {} 
-       onSubmit(): void { this.submitted = true; if (this.registerForm.invalid) 
-        { return; } 
-        // Perform registration logic here, for now, we'll just navigate to login 
-        this.router.navigate(['/login']); } get f() { return this.registerForm.controls; } }
+
+  onSubmit(): void {
+    this.submitted = true;
+    this.userRegisterService.AddRegisterUser(this.registerForm.value).subscribe(data => {
+      this.router.navigate(['/login']);
+      console.log(data);
+    })
+    if (this.registerForm.invalid) { return; }
+     this.router.navigate(['/login']);       
+  } 
+}
+
+
+
+  // // Add conditional validation for UT Number based on the role
+  // this.registerForm.get('role').valueChanges.subscribe(role =>
+  //   { const utNumberControl = this.registerForm.get('utNumber');
+  //    if (role === 'student') 
+  //    { utNumberControl.setValidators([Validators.required]); 
+
+  //    } else { utNumberControl.clearValidators(); 
+
+  //    } utNumberControl.updateValueAndValidity(); }); 
+  //  }

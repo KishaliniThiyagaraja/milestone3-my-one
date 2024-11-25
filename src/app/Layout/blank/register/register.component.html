@@ -1,54 +1,85 @@
 <div class="container shadow-lg mt-5 rounded">
-  <div class="row">
-    <div class="col-6">
-      <form class="m-5" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-        <h1>Create Account</h1>
+    <div class="row">
+        <div class="col-6">
+            <form class="m-5" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                <h1>Create Account</h1>
+<!-- 
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1"><i class="bi bi-person"></i></span>
+                    <input formControlName="role" type="text" class="form-control" placeholder="Role" aria-label="Role"
+                        aria-describedby="basic-addon2">
+                </div>
+                <div *ngIf="submitted && f['role'].errors" class="form-text text-danger">
+                    Role is required
+                </div> -->
 
-        <div class="input-group mb-3">
-          <span class="input-group-text" id="basic-addon1"><i class="bi bi-person"></i></span>
-          <input formControlName="name" type="text" class="form-control" placeholder="Your Name" aria-label="Name" aria-describedby="basic-addon2">
-        </div>
-        <div *ngIf="submitted && f['name'].errors" class="form-text text-danger">
-          Name is required
-        </div>
 
-        <div class="input-group mb-3">
-          <span class="input-group-text" id="basic-addon1"><i class="bi bi-envelope-plus"></i></span>
-          <input formControlName="email" type="text" class="form-control" placeholder="Your Email" aria-label="Email" aria-describedby="basic-addon2">
-        </div>
-        <div *ngIf="submitted && f['email'].errors" class="form-text text-danger">
-          Valid Email is required
-        </div>
 
-        <div class="input-group mb-3">
-          <span class="input-group-text" id="basic-addon1"><i class="bi bi-card-list"></i></span>
-          <input formControlName="utNumber" type="text" class="form-control" placeholder="Your UT Number" aria-label="UT Number" aria-describedby="basic-addon2">
-        </div>
-        <div *ngIf="submitted && f['utNumber'].errors" class="form-text text-danger">
-          UT Number is required
-        </div>
+                <div class="input-group mb-3"> <span class="input-group-text" id="basic-addon1">
+                        <i class="bi bi-person"></i></span>
+                    <select formControlName="role" class="form-select" aria-label="Role">
+                        <option value="">Select Role</option>
+                        <option value="student">Student</option>
+                        <option value="admin">Admin</option>
+                        <option value="lecturer">Lecturer</option>
+                        <option value="staff">Staff</option>
+                    </select>
+                </div>
+                <div *ngIf="submitted && f['role'].errors" class="form-text text-danger">
+                    Role is required
+                </div>
 
-        <div class="input-group mb-3">
-          <span class="input-group-text" id="basic-addon1"><i class="bi bi-file-lock"></i></span>
-          <input formControlName="password" type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
-        </div>
-        <div *ngIf="submitted && f['password'].errors" class="form-text text-danger">
-          Password must be at least 6 characters long
-        </div>
 
-        <div class="input-group mb-3">
-          <span class="input-group-text" id="basic-addon1"><i class="bi bi-file-lock"></i></span>
-          <input formControlName="confirmPassword" type="password" class="form-control" placeholder="Confirm Password" aria-label="Confirm Password" aria-describedby="basic-addon1">
-        </div>
-        <div *ngIf="submitted && f['confirmPassword'].errors" class="form-text text-danger">
-          Confirm Password is required
-        </div>
 
-        <button type="submit" class="btn btn-primary">Create Account</button>
-      </form>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1"><i class="bi bi-person"></i></span>
+                    <input formControlName="username" type="text" class="form-control" placeholder="Username"
+                        aria-label="Username" aria-describedby="basic-addon2">
+                </div>
+                <div *ngIf="submitted && f['username'].errors" class="form-text text-danger">
+                    Username is required
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1"><i class="bi bi-card-list"></i></span>
+                    <input formControlName="registerNumber" type="text" class="form-control"
+                        placeholder="Register Number" aria-label="RegisterNumber" aria-describedby="basic-addon2">
+                </div>
+                <div *ngIf="submitted && f['registerNumber'].errors" class="form-text text-danger">
+                    Register Number is required
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1"><i class="bi bi-card-list"></i></span>
+                    <input formControlName="utNumber" type="text" class="form-control" placeholder="UT Number"
+                        aria-label="UTNumber" aria-describedby="basic-addon2">
+                </div>
+                <div *ngIf="submitted && f['utNumber'].errors" class="form-text text-danger"> UT Number is required for students 
+                </div>
+          
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1"><i class="bi bi-envelope"></i></span>
+                    <input formControlName="email" type="email" class="form-control" placeholder="Email"
+                        aria-label="Email" aria-describedby="basic-addon2">
+                </div>
+                <div *ngIf="submitted && f['email'].errors" class="form-text text-danger">
+                    Valid Email is required
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1"><i class="bi bi-file-lock"></i></span>
+                    <input formControlName="password" type="password" class="form-control" placeholder="Password"
+                        aria-label="Password" aria-describedby="basic-addon1">
+                </div>
+                <div *ngIf="submitted && f['password'].errors" class="form-text text-danger">
+                    Password must be at least 6 characters long
+                </div>
+                <div *ngIf="submitted && f['confirmPassword'].errors" class="form-text text-danger"> Confirm Password is
+                    required and must match the password
+                </div>
+                <button type="submit" class="btn btn-primary">Create Account</button>
+            </form>
+        </div>
+        <div class="col-6"> <img src="./unicom.jpg" alt="Register Image" class="img-fluid"> </div>
     </div>
-    <div class="col-6">
-      <img src="register-image.jpg" alt="Register Image" class="img-fluid">
-    </div>
-  </div>
-</div>
