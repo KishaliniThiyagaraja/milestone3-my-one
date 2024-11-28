@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule } from '@angular/forms';
+// import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,15 +17,30 @@ import { ManagerComponent } from './Layout/manager/manager.component';
 import { LecturesComponent } from './Layout/lectures/lectures.component';
 import { StaffComponent } from './Layout/staff/staff.component';
  import { HttpClientModule } from '@angular/common/http';
+ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { FormsModule } from '@angular/forms';
+// import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { AttendanceComponent } from './Components/manager/attendance/attendance.component';
+
 import { AboutComponent } from './about/about.component';
 import { HomeComponent } from './home/home.component';
 import { ContactComponent } from './contact/contact.component';
-import { MarksComponent } from './Components/manager/marks/marks/marks.component';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AddMarkComponent } from './Components/marks/add-mark/add-mark.component';
+import { ShowMarkComponent } from './Components/marks/show-mark/show-mark.component';
+import { ViewStudentComponent } from './Components/student/view-student/view-student.component';
+import { StudentListComponent } from './Components/student/student-list/student-list.component';
+import { ConfirmationDialogComponent } from './Components/confirmation-dialog/confirmation-dialog.component';
+import { ActionMarkComponent } from './Components/marks/action-mark/action-mark.component';
+import { AddStudentComponent } from './Components/student/add-student/add-student.component';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { environment } from './modal/environment';
+
+
+
 
 
 @NgModule({
@@ -41,11 +56,18 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ManagerComponent,
     LecturesComponent,
     StaffComponent,
-    AttendanceComponent,
+
     AboutComponent,
     HomeComponent,
     ContactComponent,
-    MarksComponent,
+    AddMarkComponent,
+    ActionMarkComponent,
+    ShowMarkComponent,
+    AddStudentComponent,
+     StudentListComponent,
+    ViewStudentComponent,
+    ConfirmationDialogComponent,
+
   
   ],
   imports: [
@@ -56,9 +78,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CommonModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
-  ],
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule,
+    AngularFireAuthModule,
+    ToastrModule.forRoot(), 
+   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+

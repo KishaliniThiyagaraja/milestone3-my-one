@@ -1,5 +1,8 @@
 export interface Mark {
-    id: number;
+
     subject: string;
     marks: number;
+    id?: string;
+first_name?: string;
+
 }
